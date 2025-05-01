@@ -207,6 +207,9 @@ class FlatBugYOLODataset(YOLODataset):
         self._include_classes = classes # Only used so the class list is visible in the subset method
         if subset_args is not None:
             hook_get_labels_with_subset(self, subset_args)
+        if "data" in kwargs:
+            if not "channels" in kwargs["data"]:
+                kwargs["data"]["channels"] = 3
         super().__init__(classes=classes, *args, **kwargs)
         self.sample_weights = [image_weight * len(label_i["cls"]) for label_i, image_weight in zip(self.labels, calculate_image_weights(self.im_files))]
         self.__indices = generate_indices(self.sample_weights, target_size=len(self.im_files) * self._oversample_factor)
