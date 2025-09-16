@@ -1,5 +1,5 @@
 # <code> flatbug </code>
-### **<center><ins><a href="https://doi.org/10.1101/2025.04.08.647223">A General Method for Detection and Segmentation of Terrestrial Arthropods in Images</a></ins></center>**
+### **<center><ins><a style="color:inherit;" href="https://doi.org/10.1101/2025.04.08.647223">A General Method for Detection and Segmentation of Terrestrial Arthropods in Images</a></ins></center>**
 
 **[Find and cite the flatbug preprint on bioRxiv](https://www.biorxiv.org/content/10.1101/2025.04.08.647223v1).**
 
@@ -7,7 +7,7 @@
 
 <p align="center">
     <img src="prediction.jpg" style="width: 75%;">
-</p>
+</div>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/darsa-group/flat-bug/blob/master/docs/flat-bug.ipynb)
 [![](https://img.shields.io/badge/bioRxiv-10.1101%2F2025.04.08.647223-B52838?style=flat&logo=doi&logoColor=white&labelColor=gray)](https://doi.org/10.1101/2025.04.08.647223)
