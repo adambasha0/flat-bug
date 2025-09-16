@@ -1,5 +1,5 @@
 # <code> flatbug </code>
-### **<center><ins>A General Method for Detection and Segmentation of Terrestrial Arthropods in Images</ins></center>**
+### **<center><ins><a href="https://doi.org/10.1101/2025.04.08.647223">A General Method for Detection and Segmentation of Terrestrial Arthropods in Images</a></ins></center>**
 
 **[Find and cite the flatbug preprint on bioRxiv](https://www.biorxiv.org/content/10.1101/2025.04.08.647223v1).**
 
@@ -10,6 +10,9 @@
 </p>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/darsa-group/flat-bug/blob/master/docs/flat-bug.ipynb)
+[![](https://img.shields.io/badge/bioRxiv-10.1101%2F2025.04.08.647223-B52838?style=flat&logo=doi&logoColor=white&labelColor=gray)](https://doi.org/10.1101/2025.04.08.647223)
+[![](https://img.shields.io/badge/Zenodo-10.5281/zenodo.14761446-0377cd?style=flat&logo=doi&logoColor=white&labelColor=gray)](https://doi.org/10.5281/zenodo.14761446)
+
 
 `flatbug` is partly a high-performance pyramid tiling inference wrapper for [`YOLOv8`](https://github.com/ultralytics/ultralytics) and partly a hybrid instance segmentation dataset of terrestrial arthropods accompanied by an appropriate training schedule for `YOLOv8` segmentation models, built on top of the original [`YOLOv8` training schedule](https://docs.ultralytics.com/modes/train/#why-choose-ultralytics-yolo-for-training). 
 
