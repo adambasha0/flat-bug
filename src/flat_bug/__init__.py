@@ -3,6 +3,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from typing import Optional
+import os
 
 from tqdm import tqdm
 
@@ -23,9 +24,10 @@ def download_from_repository(url : str, output_path : Optional[str]=None, strict
     try:
         if progress:
             with DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=f'Downloading {url} to {output_path}') as t:
-                urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
+                tmp, _ = urllib.request.urlretrieve(url, reporthook=t.update_to)
         else:
-                urllib.request.urlretrieve(url, filename=output_path)
+                tmp, _ = urllib.request.urlretrieve(url)
+        os.rename(tmp, output_path)
     except Exception as e:
         if not strict:
             return False
