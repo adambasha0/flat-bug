@@ -1,6 +1,10 @@
 # <code> flatbug </code>
 ### **<center><ins>A General Method for Detection and Segmentation of Terrestrial Arthropods in Images</ins></center>**
 
+**[Find and cite the flatbug preprint on bioRxiv](https://www.biorxiv.org/content/10.1101/2025.04.08.647223v1).**
+
+**Send us new data through our [data contribution form](https://forms.gle/hQe2dzLs4tHcCarEA).**
+
 <p align="center">
     <img src="prediction.jpg" style="width: 75%;">
 </p>
