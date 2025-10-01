@@ -15,8 +15,8 @@
 
 <div align="center">
     <table><tr>
-        <td width="50%"><strong><a href="https://www.biorxiv.org/content/10.1101/2025.04.08.647223v1">Find and cite the flatbug preprint on bioRxiv</a></strong></td>
-        <td width="50%"><strong> Send us new data through our <a href="https://forms.gle/hQe2dzLs4tHcCarEA">data contribution form<a>. </strong></td>
+        <td><strong> Find and cite the <a href="https://www.biorxiv.org/content/10.1101/2025.04.08.647223v1">flatbug preprint on bioRxiv</a></strong></td>
+        <td><strong> Send us new data through our <a href="https://forms.gle/hQe2dzLs4tHcCarEA">data contribution form<a>. </strong></td>
     </tr></table>
 </div>
 
