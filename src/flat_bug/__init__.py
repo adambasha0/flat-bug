@@ -21,18 +21,25 @@ def download_from_repository(url : str, output_path : Optional[str]=None, strict
     if output_path is None:
         output_path = url
     url = urllib.parse.quote(urllib.parse.urljoin(REMOTE_REPOSITORY, url), safe="/:")
+    tmp_dl_file = output_path + ".tmp"
     try:
         if progress:
             with DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=f'Downloading {url} to {output_path}') as t:
-                tmp, _ = urllib.request.urlretrieve(url, reporthook=t.update_to)
+                urllib.request.urlretrieve(url, filename=tmp_dl_file, reporthook=t.update_to)
         else:
-                tmp, _ = urllib.request.urlretrieve(url)
-        os.rename(tmp, output_path)
+                urllib.request.urlretrieve(url,  filename=tmp_dl_file)
+        
+        os.rename(tmp_dl_file, output_path)
+
     except Exception as e:
         if not strict:
             return False
         else:
             raise e
+    finally:
+        if os.path.exists(tmp_dl_file):
+            os.remove(tmp_dl_file)
+
     return True
 
 # TODO: Improve this perhaps using https://gist.github.com/aldur/f356f245014523330a7070ab12bcfb1f, 
