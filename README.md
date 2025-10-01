@@ -13,6 +13,7 @@
 [![](https://img.shields.io/badge/bioRxiv-10.1101%2F2025.04.08.647223-B52838?style=flat&logo=doi&logoColor=white&labelColor=gray)](https://doi.org/10.1101/2025.04.08.647223)
 [![](https://img.shields.io/badge/Zenodo-10.5281/zenodo.14761446-0377cd?style=flat&logo=doi&logoColor=white&labelColor=gray)](https://doi.org/10.5281/zenodo.14761446)
 
+**<center>[Find and cite the flatbug preprint on bioRxiv](https://www.biorxiv.org/content/10.1101/2025.04.08.647223v1) <span style="padding: 0 25px;">|</span> Send us new data through our [data contribution form](https://forms.gle/hQe2dzLs4tHcCarEA).</center>**
 
 `flatbug` is partly a high-performance pyramid tiling inference wrapper for [`YOLOv8`](https://github.com/ultralytics/ultralytics) and partly a hybrid instance segmentation dataset of terrestrial arthropods accompanied by an appropriate training schedule for `YOLOv8` segmentation models, built on top of the original [`YOLOv8` training schedule](https://docs.ultralytics.com/modes/train/#why-choose-ultralytics-yolo-for-training). 
 
