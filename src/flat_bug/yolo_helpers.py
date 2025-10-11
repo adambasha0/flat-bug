@@ -399,13 +399,18 @@ def postprocess(
             pred = pred[~close_to_edge]
             boxes = boxes[~close_to_edge]
         # Deduplicate predictions
+        # Determine mask coefficient dimensionality from prototypes so we pick the correct slice
+        # protos shape: (batch, c, mh, mw) or (c, mh, mw) -> we ensured protos is at least 4-D earlier
+        proto_idx = min(i, len(protos) - 1)
+        mask_dim = protos[proto_idx].shape[0]
+
         if nms != 0:
             if nms == 1:
                 nms_ind = nms_boxes(boxes, pred[:, 4], iou_threshold=iou_threshold)
             elif nms == 2:
                 nms_ind = fancy_nms(boxes, iou_boxes, pred[:, 4], iou_threshold=iou_threshold, return_indices=True)
             elif nms == 3:
-                masks = process_mask(protos[min(i, len(protos)-1)], pred[:, -32:], boxes, imgs[i].shape[-2:], False) # pred[:, -32:] - not sure this is correct for more than one class
+                masks = process_mask(protos[proto_idx], pred[:, -mask_dim:], boxes, imgs[i].shape[-2:], False)
                 nms_ind = nms_masks(masks, pred[:, 4], iou_threshold=iou_threshold, return_indices=True, boxes=boxes / 4, group_first=False)
                 # group_first is True, because nms_masks has vectorized IoU, 
                 # meaning that the overhead of doing connected-component clustering is larger than the time-loss from redundant IoU calculations
@@ -415,7 +420,7 @@ def postprocess(
             pred = pred[nms_ind]
             boxes = boxes[nms_ind]
         if nms != 3:
-            masks = process_mask(protos[i], pred[:, -32:], boxes, imgs[i].shape[-2:], False) # pred[:, -32:] - not sure this is correct for more than one class
+            masks = process_mask(protos[proto_idx], pred[:, -mask_dim:], boxes, imgs[i].shape[-2:], False)
         too_small = masks.sum(dim=[1, 2]) < 3
         pred = pred[~too_small]
         boxes = boxes[~too_small]
