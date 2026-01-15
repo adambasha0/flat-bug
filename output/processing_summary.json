@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-12-31T19:46:48.995446",
+  "config": {
+    "model": "flat_bug_L.pt",
+    "score_threshold": 0.25,
+    "iou_threshold": 0.2,
+    "minimum_tile_overlap": 384,
+    "edge_case_margin": 16,
+    "min_obj_size": 32,
+    "max_obj_size": 1024,
+    "device": "cuda:0",
+    "dtype": "torch.float16"
+  },
+  "results": [
+    {
+      "dataset": "gernat2018",
+      "num_images": 38,
+      "num_predictions": 38,
+      "total_detections": 1848,
+      "output_dir": "./output/gernat2018",
+      "output_json": "./output/gernat2018/392d2d-870bc_instances.json",
+      "coco_json": "./output/gernat2018/flatbug_predictions.json",
+      "status": "success"
+    }
+  ]
+}
