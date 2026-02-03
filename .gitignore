@@ -199,6 +199,9 @@ pyvenv.cfg
 *.whl
 *.gz
 
+# Generated YOLO dataset (training/validation splits)
+fb_yolo/
+
 !/prediction.jpg
 *.Rproj.user
 *.Rproj
