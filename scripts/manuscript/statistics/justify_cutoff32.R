@@ -1,3 +1,5 @@
+source("helpers/flatbug_init.R")
+
 cutoff_data <- "data/compare_backbone_sizes_L_full.csv" %>% 
   read_csv2(show_col_types = F) %>% 
   mutate(

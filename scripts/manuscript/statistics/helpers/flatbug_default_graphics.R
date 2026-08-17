@@ -1,9 +1,9 @@
 theme_set(
-  ggpubr::theme_pubr(
-    base_family = "CMU Serif",
-    legend = "right"
+  theme_classic(
+    base_family = "CMU Serif"
   ) +
     theme(
+      legend.position = "right",
       strip.text = element_text(hjust = 0.5, size = 16, face = "bold"),
       strip.text.y.right = element_text(angle = 0),
       strip.text.y.left = element_text(angle = 0),

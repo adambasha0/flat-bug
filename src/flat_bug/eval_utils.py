@@ -955,10 +955,25 @@ def compare_groups(
     a1, a2 = np.array([contour_area(c) for c in c1]), np.array([contour_area(c) for c in c2])
     len_1, len_2 = len(c1), len(c2)
 
-    # Calculate the IoU matrix
+    # Calculate the IoU matrix (contour-based)
     intersection = pairwise_contour_intersection(c1, c2, b1, b2, a1, a2)
     union = a1.reshape(-1, 1) + a2.reshape(1, -1) - intersection
     iou = intersection / union
+    
+    # Calculate the bounding box IoU matrix
+    # bbox areas: (xmax - xmin) * (ymax - ymin)
+    bbox_area1 = (b1[:, 2] - b1[:, 0]) * (b1[:, 3] - b1[:, 1]) if len(b1) > 0 else np.array([])
+    bbox_area2 = (b2[:, 2] - b2[:, 0]) * (b2[:, 3] - b2[:, 1]) if len(b2) > 0 else np.array([])
+    # Pairwise bbox intersection
+    if len(b1) > 0 and len(b2) > 0:
+        bbox_intersection = np.zeros((len(b1), len(b2)), dtype=np.float32)
+        for i in range(len(b1)):
+            bbox_intersection[i] = bbox_intersect_area(b1[i], b2)
+        bbox_union = bbox_area1.reshape(-1, 1) + bbox_area2.reshape(1, -1) - bbox_intersection
+        iou_bb = np.divide(bbox_intersection, bbox_union, out=np.zeros_like(bbox_intersection), where=bbox_union != 0)
+    else:
+        iou_bb = np.zeros((len(b1), len(b2)), dtype=np.float32)
+    
     # Match the geometries
     matches, _ = match_geoms(c1, c2, threshold, iou)
     # Plot the matches and the IoU matrix
@@ -991,14 +1006,23 @@ def compare_groups(
     unmatched_1 = np.where(~matched_1)[0]
     unmatched_2 = np.where(~matched_2)[0]
 
-    # Get the matched IoU
+    # Get the matched IoU (contour-based)
     if all(iou.shape):
-        matched_iou = iou[*matches[:len_1].T]
+        matched_iou = iou[tuple(matches[:len_1].T)]
         # Set the IoU of unmatched geometries to 0
         matched_iou[unmatched_1] = 0
         matched_iou = np.concatenate([matched_iou, np.zeros(len(unmatched_2))])
     else:
         matched_iou = np.zeros(len(matches))
+
+    # Get the matched bounding box IoU
+    if all(iou_bb.shape):
+        matched_iou_bb = iou_bb[tuple(matches[:len_1].T)]
+        # Set the IoU of unmatched geometries to 0
+        matched_iou_bb[unmatched_1] = 0
+        matched_iou_bb = np.concatenate([matched_iou_bb, np.zeros(len(unmatched_2))])
+    else:
+        matched_iou_bb = np.zeros(len(matches))
 
     # Get the confidences
     conf1 = ["NA" for _ in range(len(matches))]
@@ -1058,6 +1082,7 @@ def compare_groups(
         "conf1": conf1,
         "conf2": conf2,
         "IoU": matched_iou,
+        "IOU_bb": matched_iou_bb,
         "contourArea_1": careas1,
         "contourArea_2": careas2,
         "bbox_1": boxes1,

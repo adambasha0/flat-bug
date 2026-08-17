@@ -1,5 +1,16 @@
+# Contents
+
+| Path | Origin |
+| --- | --- |
+| `thesis/` | **Final scripts for the SAM3 bachelor's thesis** — Experiments 1–4, AP evaluation, methods entry points and visualizations. Mirrored into the `sam3-insect-segmentation` repository. |
+| `exploratory/` | Superseded / working scripts from the same effort, grouped by topic. |
+| everything else at this level | Upstream FlatBug manuscript analyses (`full_analysis.R` and friends), documented below. |
+
+Bulk result data (`data/`, `coco_data/`, `coco_instances/`, `graphs/`, `figures/`) is
+not committed — see the repository `.gitignore`.
+
 # Execute
-To run the analyses simply open the "full_analysis.R" script and set the two
+To run the upstream FlatBug analyses simply open the "full_analysis.R" script and set the two
 parameters as you need:
 
 * `do_recompute`: Set to `FALSE`, unless you *really* want to recompute the

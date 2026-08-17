@@ -1,3 +1,5 @@
+source("helpers/flatbug_init.R")
+
 integrate_curve <- function(x, y) {
   # Ensure x and y have the same length
   if (length(x) != length(y)) {
